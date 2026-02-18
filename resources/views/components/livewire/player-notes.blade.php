@@ -1,5 +1,5 @@
 <div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-bold mb-4 text-gray-800">Historial de Nostas de Jugador</h2>
+    <h2 class="text-xl font-bold mb-4 text-gray-800">Historial de Notas de Jugador {{ $player->name }}</h2>
 
     @can('create-notes')
         <form wire:submit.prevent="saveNote" class="mb-6">
