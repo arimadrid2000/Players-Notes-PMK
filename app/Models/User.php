@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +43,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function writtenNotes(): HasMany
+    {
+        return $this->hasMany(PlayerNote::class, 'user_id');
+    }
+
+    public function receivedNotes(): HasMany
+    {
+        return $this->hasMany(PlayerNote::class, 'player_id');
+    }
+
+
+    public function isAgent(): bool
+    {
+        return $this->role === 'agent' || $this->role === 'admin';
+    }
 }
