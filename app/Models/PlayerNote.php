@@ -21,6 +21,6 @@ class PlayerNote extends Model
 
     public function player(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'player_id');
+        return $this->belongsTo(Player::class);
     }
 }
