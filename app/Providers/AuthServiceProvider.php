@@ -23,7 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('create-notes', function ($user) {
-            return in_array($user->role, ['admin', 'agent']);
+            return $user->isAgent() && $user->can_create_notes;
         });
     }
 }

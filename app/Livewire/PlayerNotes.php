@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
@@ -45,7 +45,7 @@ class PlayerNotes extends Component
     {
         $notes = $repository->getNotesByPlayer($this->player->id);
 
-        return view('components.livewire.player-notes', [
+        return view('livewire.player-notes', [
             'notes' => $notes
         ])->layout('components.layouts.app');
     }

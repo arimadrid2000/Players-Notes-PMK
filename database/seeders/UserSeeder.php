@@ -16,20 +16,24 @@ class UserSeeder extends Seeder
         $agentRoleId = DB::table('roles')->where('name', 'agent')->value('id');
         $playerRoleId = DB::table('roles')->where('name', 'player')->value('id');
 
-        User::firstOrCreate(
-            ['email' => 'agent@casino.com'],
-            [
-                'name' => 'Agent User',
-                'password' => bcrypt('password'),
-                'role_id' => $agentRoleId,
-            ]
-        );
+        $agents = ['Supervisor', 'Junior'];
+        foreach ($agents as $index => $name) {
+            User::firstOrCreate(
+                ['email' => 'agent' . strtolower($name) . '@casino.com'],
+                [
+                    'name' => 'Agente ' . $name,
+                    'password' => bcrypt('12345678'),
+                    'role_id' => $agentRoleId,
+                    'can_create_notes' => $name === "Supervisor",
+                ]
+            );
+        }
 
         $players = ['Pedro', 'Juan', 'Maria'];
         foreach ($players as $index => $name) {
             User::firstOrCreate(['email' => strtolower($name) . '@casino.com'], [
                 'name' => $name . ' Player',
-                'password' => bcrypt('password'),
+                'password' => bcrypt('987654'),
                 'role_id' => $playerRoleId,
             ]);
         }
