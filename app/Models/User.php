@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'can_create_notes',
     ];
 
     /**
@@ -45,6 +46,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'can_create_notes' => 'boolean'
     ];
 
 
@@ -66,6 +68,6 @@ class User extends Authenticatable
 
     public function isAgent(): bool
     {
-        return $this->role === 'agent' || $this->role === 'admin';
+        return $this->role && $this->role->name === 'agent';
     }
 }
