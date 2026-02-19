@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Player;
 use App\Models\Role;
 use App\Models\PlayerNote;
 
@@ -14,8 +15,8 @@ class PlayerNoteSeeder extends Seeder
      */
     public function run(): void
     {;
-        $agent = User::where('role_id', Role::where('name', 'agent')->value('id'))->first();
-        $player = User::where('role_id', Role::where('name', 'player')->value('id'))->first();
+        $agent = User::where('role_id', Role::where('name', 'Pro')->value('id'))->first();
+        $player = Player::first();
 
         if (!$agent || !$player) {
             return;

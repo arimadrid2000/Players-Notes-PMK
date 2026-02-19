@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('player_notes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('player_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('player_id')->constrained('players')->onDelete('cascade');
             $table->text('content');
             $table->timestamps();
         });

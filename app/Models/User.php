@@ -55,19 +55,13 @@ class User extends Authenticatable
         return $this->hasMany(PlayerNote::class, 'user_id');
     }
 
-    public function receivedNotes(): HasMany
-    {
-        return $this->hasMany(PlayerNote::class, 'player_id');
-    }
-
-
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function isAgent(): bool
+    public function isPro(): bool
     {
-        return $this->role && $this->role->name === 'agent';
+        return $this->role && $this->role->name === 'Pro';
     }
 }

@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Repositories\PlayerNoteRepository;
-use App\Models\User;
+use App\Models\Player;
 
 class NoteList extends Component
 {
@@ -15,7 +15,7 @@ class NoteList extends Component
     public function render(PlayerNoteRepository $repo)
     {
         $notes = $repo->getNotesByPlayer($this->playerId);
-        $player = User::find($this->playerId);
+        $player = Player::findOrFail($this->playerId);
 
         return view('livewire.note-list', compact('notes', 'player'));
     }
