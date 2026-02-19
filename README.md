@@ -1,66 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎰 Casino Backoffice PMK - Módulo de historial de notas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es una Prueba Técnica para PMK. Consiste en un sistema Backoffice desarrollado con **Laravel** y **Livewire 3** (con enfoque SPA) que permite a los agentes del casino gestionar y visualizar las notas de los jugadores.
 
-## About Laravel
+## 🚀 Tecnologías y Arquitectura
+- **Framework:** Laravel 10+ (PHP 8+)
+- **Frontend:** Livewire 3 (Single Page Application)
+- **Estilos:** Tailwind CSS
+- **Arquitectura:** Patrón Repositorio (Repository Pattern) y Domain-Driven Design.
+- **Seguridad:** Control de Acceso Basado en Roles (RBAC) mediante Laravel Gates.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🔐 Credenciales de Acceso Rápido
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Para facilitar la revisión del proyecto, el sistema genera automáticamente dos perfiles con distintos niveles de permisos al correr las migraciones. 
 
-## Learning Laravel
+Puedes iniciar sesión con cualquiera de los siguientes:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Rol | Permisos | Correo Electrónico | Contraseña |
+| :--- | :--- | :--- | :--- |
+| **Agente Pro** (Supervisor) | Lectura y Escritura (Puede crear notas) | `agentsupervisor@casino.com` | `12345678` |
+| **Agente Standar** (Junior) | Solo Lectura (No ve el formulario) | `agentjunior@casino.com` | `12345678` |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚙️ Instrucciones de Instalación
 
-## Laravel Sponsors
+Sigue estos pasos para levantar el proyecto localmente:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clonar el repositorio:**
+```bash
+git clone [https://github.com/arimadrid2000/Players-Notes-PMK.git](https://github.com/arimadrid2000/Players-Notes-PMK.git)
+cd Players-Notes-PMK
+```
 
-### Premium Partners
+2. **Instalar dependencias de PHP:**
+```bash
+composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. **Configurar el entorno (.env):**
+Copia el archivo de ejemplo y crea tu propio `.env`:
+```bash
+cp .env.example .env
+```
+*Asegúrate de configurar tus credenciales de base de datos en el archivo `.env` (y de que la base de datos `players_notes_pmk` exista en tu gestor MySQL).*
 
-## Contributing
+4. **Generar la clave de la aplicación:**
+```bash
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5. **Ejecutar Migraciones y Seeders (¡Importante!):**
+Esto creará las tablas, los roles, los jugadores de prueba y los usuarios para el inicio de sesión.
 
-## Code of Conduct
+ - Al ejecutar por primera vez
+```bash
+php artisan migrate --seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+ - Para refrescar tablas y datos de seeders
+```bash
+php artisan migrate:fresh --seed
+```
 
-## Security Vulnerabilities
+6. **Levantar el servidor local:**
+```bash
+php artisan serve
+```
+*El proyecto estará disponible en [http://localhost:8000](http://localhost:8000)*
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🧪 Pruebas Automatizadas (Feature Tests)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+El proyecto incluye pruebas integradas para verificar el correcto funcionamiento de los componentes críticos. Para ejecutarlas, corre el siguiente comando en la terminal:
+
+```bash
+php artisan test
+```
+
+Las pruebas verifican:
+- Autenticación correcta e incorrecta en el componente de Login (`AgentSelectorTest`).
+- Validación de caracteres, comprobación de permisos de Roles y guardado exitoso en la base de datos (`NoteFormTest`).
