@@ -5,14 +5,25 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Validate;
 
 class AgentSelector extends Component
 {
-    public function loginAs($agentId)
-    {
-        Auth::loginUsingId($agentId);
+    #[Validate('required|email')]
+    public $email = '';
 
-        $this->dispatch('agentLoggedIn');
+    #[Validate('required')]
+    public $password = '';
+
+    public function login()
+    {
+        $this->validate();
+
+        if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
+            return redirect()->to('/');
+        } else {
+            $this->addError('email', 'Las credenciales no coinciden con nuestros registros.');
+        }
     }
 
     public function render()

@@ -1,32 +1,30 @@
-<div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+<div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 w-full max-w-md mx-auto">
     <div class="text-center mb-8">
-        <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Inicio de sesión (BackOffice)</h1>
-        <p class="text-gray-500">Selecciona tu perfil para iniciar sesión en el sistema.</p>
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-2">Acceso al Sistema</h1>
+        <p class="text-gray-500">Ingresa tus credenciales de agente.</p>
     </div>
 
-    @if(isset($agentSup) && isset($agentJr))
-        <div class="grid gap-4">
-            <button wire:click="loginAs({{ $agentSup->id }})" class="flex items-center p-5 border-2 border-gray-100 rounded-lg hover:border-green-500 hover:bg-green-50 transition group w-full text-left">
-                <div class="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-200">
-                    <span class="text-green-600 font-bold text-xl">S</span>
-                </div>
-                <div>
-                    <span class="block font-bold text-lg text-gray-800">{{ $agentSup->name }}</span>
-                    <span class="text-sm text-green-600 font-medium">✅ Permisos de Escritura</span>
-                </div>
-            </button>
-
-            <button wire:click="loginAs({{ $agentJr->id }})" class="flex items-center p-5 border-2 border-gray-100 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition group w-full text-left">
-                <div class="bg-blue-100 p-3 rounded-full mr-4 group-hover:bg-blue-200">
-                    <span class="text-blue-600 font-bold text-xl">J</span>
-                </div>
-                <div>
-                    <span class="block font-bold text-lg text-gray-800">{{ $agentJr->name }}</span>
-                    <span class="text-sm text-blue-600 font-medium">👀 Solo Lectura</span>
-                </div>
-            </button>
+    <form wire:submit.prevent="login" class="space-y-5">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+            <input type="email" wire:model="email"
+                   class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2.5 border"
+                   placeholder="ejemplo@casino.com">
+            @error('email') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
         </div>
-    @else
-        <p class="text-red-500 text-center">Faltan datos. Ejecuta los seeders.</p>
-    @endif
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+            <input type="password" wire:model="password"
+                   class="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2.5 border"
+                   placeholder="••••••••">
+            @error('password') <span class="text-red-500 text-xs mt-1">{{ $message }}</span> @enderror
+        </div>
+
+        <button type="submit"
+                class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition flex justify-center items-center">
+            <span wire:loading.remove>Iniciar Sesión</span>
+            <span wire:loading>Verificando...</span>
+        </button>
+    </form>
 </div>
