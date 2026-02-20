@@ -34,9 +34,16 @@ git clone [https://github.com/arimadrid2000/Players-Notes-PMK.git](https://githu
 cd Players-Notes-PMK
 ```
 
-2. **Instalar dependencias de PHP:**
+2. **Instalar dependencias:**
+
+- PHP
 ```bash
 composer install
+```
+
+- Node
+```bash
+npm install
 ```
 
 3. **Configurar el entorno (.env):**
