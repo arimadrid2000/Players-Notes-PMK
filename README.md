@@ -30,7 +30,7 @@ Sigue estos pasos para levantar el proyecto localmente:
 
 1. **Clonar el repositorio:**
 ```bash
-git clone [https://github.com/arimadrid2000/Players-Notes-PMK.git](https://github.com/arimadrid2000/Players-Notes-PMK.git)
+git clone https://github.com/arimadrid2000/Players-Notes-PMK.git
 cd Players-Notes-PMK
 ```
 
@@ -41,9 +41,9 @@ cd Players-Notes-PMK
 composer install
 ```
 
-- Node
+- Node/Vite
 ```bash
-npm install
+npm install && npm run build
 ```
 
 3. **Configurar el entorno (.env):**
